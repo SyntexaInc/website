@@ -37,15 +37,16 @@
     max-width: 15vw; /* Scale with viewport width */
     height: auto; /* Maintain aspect ratio */
     width: auto;
+ filter: brightness(1.2); /* Lightens the logo by 20% */
 }
 
 /* Header Logo: Larger and Responsive */
 .header-logo {
-    max-width: 30vw; /* Scale with viewport width */
-    max-height: 20vh; /* Scale with viewport height */
-    width: 100%; /* Responsive scaling */
-    height: auto; /* Maintain aspect ratio */
-    opacity: 0.95; /* Optional: Slight transparency */
+   max-width: 50%; /* Scale to 50% of the container's width */
+    max-height: 60vh; /* Scale to 60% of the viewport height */
+    width: auto; /* Automatically adjusts width to maintain aspect ratio */
+    height: auto; /* Automatically adjusts height to maintain aspect ratio */
+    margin: 0 auto; /* Center alignment */
 }
 
 /* Media Queries for Fine-Tuning on Smaller Screens */
@@ -56,15 +57,15 @@
     }
 
     .header-logo {
-        max-width: 40vw; /* Larger on smaller screens */
-        max-height: 25vh;
+       max-width: 70%; /* Allow larger width for smaller screens */
+        max-height: 50vh; /* Adjust height to fit smaller screens */
     }
 }
 
 @media (min-width: 1200px) {
     .header-logo {
-        max-width: 20vw; /* Slightly smaller on larger screens for balance */
-        max-height: 15vh;
+       max-width: 40%; /* Reduce size slightly for very large screens */
+        max-height: 50vh; /* Maintain proportional scaling */
     }
 }
         .hero-section {
