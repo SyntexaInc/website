@@ -10,7 +10,6 @@
         :root {
             --primary-color: #004d40; /* Dark green */
             --secondary-color: #00796b; /* Complementary green */
-
             --accent-color: #80cbc4; /* Accent light green */
             --text-color: #ffffff; /* White */
             --muted-color: #b2dfdb; /* Light muted green */
@@ -27,52 +26,70 @@
             border-bottom: 2px solid var(--accent-color);
         }
 
-        .navbar-brand, .nav-link {
-            color: var(--text-color) !important;
-            font-weight: 500;
-        }
-/* Navbar Logo: Scales Dynamically */
-.navbar-logo {
-    max-height: 8vh; /* Scale dynamically with viewport height */
-    max-width: 15vw; /* Scale with viewport width */
-    height: auto; /* Maintain aspect ratio */
-    width: auto;
- filter: brightness(1.2); /* Lightens the logo by 20% */
+        /* Navbar Styling */
+.navbar {
+    background-color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
 }
 
-/* Header Logo: Larger and Responsive */
-.header-logo {
-   max-width: 50%; /* Scale to 50% of the container's width */
-    max-height: 60vh; /* Scale to 60% of the viewport height */
-    width: auto; /* Automatically adjusts width to maintain aspect ratio */
-    height: auto; /* Automatically adjusts height to maintain aspect ratio */
-    margin: 0 auto; /* Center alignment */
+.navbar-fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Keeps the navbar above other content */
 }
 
-/* Media Queries for Fine-Tuning on Smaller Screens */
+.navbar-nav .nav-link {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-link i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+.navbar-toggler-icon {
+    background-color: var(--text-color); /* Change hamburger icon color */
+}
+
+/* Ensures body content does not overlap with fixed navbar */
+body {
+    padding-top: 80px; /* Adjust depending on navbar height */
+}
+
+/* Media Queries for Navbar on Smaller Screens */
 @media (max-width: 768px) {
-    .navbar-logo {
-        max-height: 6vh; /* Smaller size for mobile */
-        max-width: 20vw;
+    .navbar-nav .nav-link {
+        font-size: 1.1rem; /* Slightly larger text on mobile */
     }
 
-    .header-logo {
-       max-width: 70%; /* Allow larger width for smaller screens */
-        max-height: 50vh; /* Adjust height to fit smaller screens */
+    .navbar-nav .nav-link i {
+        font-size: 1.3rem; /* Larger icons on smaller screens */
     }
 }
 
-@media (min-width: 1200px) {
-    .header-logo {
-       max-width: 40%; /* Reduce size slightly for very large screens */
-        max-height: 50vh; /* Maintain proportional scaling */
-    }
-}
         .hero-section {
-            background: linear-gradient(135deg, var(--primary-color) 40%, var(--secondary-color));
-            color: var(--text-color);
-            padding: 80px 0;
-        }
+    background: linear-gradient(135deg, var(--primary-color) 40%, var(--secondary-color));
+    color: var(--text-color);
+    padding: 80px 20px; /* Adjust padding for better responsiveness */
+    height: 100vh; /* Ensures full-screen coverage */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Stack content vertically */
+}
+
+.header-logo {
+    max-width: 400px; /* Set a maximum width for the logo */
+    width: 50%; /* Allow flexibility */
+    height: auto;
+    margin-bottom: 20px;
+}
+
 
         .btn-primary {
             background-color: var(--accent-color);
@@ -146,34 +163,75 @@
             background-color: var(--secondary-color);
             color: var(--text-color);
         }
+        /* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 10px; /* Reduce padding for smaller screens */
+    }
+
+    .header-logo {
+        max-width: 150px; /* Reduce the logo size on smaller screens */
+        margin-bottom: 15px;
+    }
+
+    .hero-section h1 {
+        font-size: 1.8rem; /* Adjust heading font size for better fit */
+    }
+
+    .hero-section p {
+        font-size: 1rem; /* Adjust paragraph font size for readability */
+    }
+}
+
+@media (max-width: 576px) {
+    .header-logo {
+        max-width: 120px; /* Further reduce the logo size on extra small devices */
+    }
+
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-section p {
+        font-size: 0.9rem;
+    }
+}
     </style>
 </head>
 <body>
     <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-color);">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: var(--primary-color); z-index: 1000;">
     <div class="container">
-        <!-- Logo -->
-        <a class="navbar-brand" href="#">
-            <img src="logo1.png" alt="Syntexa Logo" class="navbar-logo">
-        </a>
+        <!-- Logo (Text) -->
+        <a class="navbar-brand" href="#" style="font-weight: 700; font-size: 1.8rem; letter-spacing: 1px;">Syntexa Inc.</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about"><i class="bi bi-person-circle"></i> About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services"><i class="bi bi-briefcase"></i> Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#portfolio"><i class="bi bi-images"></i> Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact"><i class="bi bi-envelope"></i> Contact</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
-    <!-- Hero Section -->
-    <header class="hero-section d-flex align-items-center justify-content-center text-center" style="background-color: var(--secondary-color); height: 100vh;">
+
+
+   <!-- Hero Section -->
+<header class="hero-section d-flex align-items-center justify-content-center text-center">
     <div class="container">
         <!-- Centered Logo -->
-        <img src="logo1.png" alt="Syntexa Logo" class="header-logo mb-4">
+        <img src="logo1.png" alt="Syntexa Logo" class="header-logo mb-4 img-fluid">
         <h1 class="text-light">Welcome to Syntexa Inc.</h1>
         <p class="lead text-light">Innovative IT Solutions for Your Business</p>
     </div>
@@ -194,68 +252,61 @@
                         <p>To become a global leader in IT solutions, synonymous with quality, innovation, and reliability.</p>
                     </div>
                 </div>
-                <div class="col-lg-6">
+            
+            <div class="col-lg-6">
+                <div class="about-card">
+                    <h3>Our Values</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-lightbulb icon-box"></i> Innovation: Exploring new technologies for exceptional solutions.</li>
+                        <li><i class="bi bi-shield-check icon-box"></i> Integrity: Building trust through transparent practices.</li>
+                        <li><i class="bi bi-people icon-box"></i> Collaboration: Partnering with clients and teams seamlessly.</li>
+                        <li><i class="bi bi-heart icon-box"></i> Customer-Centricity: Focusing on client goals and needs.</li>
+                    </ul>
+                    <h3>Why Choose Us?</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-check-circle"></i> Expert Team</li>
+                        <li><i class="bi bi-personalize"></i> Tailored Solutions</li>
+                        <li><i class="bi bi-cash-coin"></i> Cost-Effective Services</li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5" style="background-color: var(--secondary-color);">
+        <div class="container text-light">
+            <h2 class="section-heading text-center">Our Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
                     <div class="about-card">
-                        <h3>Our Values</h3>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-lightbulb icon-box"></i> Innovation: Exploring new technologies for exceptional solutions.</li>
-                            <li><i class="bi bi-shield-check icon-box"></i> Integrity: Building trust through transparent practices.</li>
-                            <li><i class="bi bi-people icon-box"></i> Collaboration: Partnering with clients and teams seamlessly.</li>
-                            <li><i class="bi bi-heart icon-box"></i> Customer-Centricity: Focusing on client goals and needs.</li>
-                        </ul>
-                        <h3>Why Choose Us?</h3>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-check-circle"></i> Expert Team</li>
-                            <li><i class="bi bi-personalize"></i> Tailored Solutions</li>
-                            <li><i class="bi bi-cash-coin"></i> Cost-Effective Services</li>
-                        </ul>
+                        <h5><i class="bi bi-code-slash"></i> Custom Software Development</h5>
+                        <p>Tailored software solutions to meet your business needs.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="about-card">
+                        <h5><i class="bi bi-cloud-upload"></i> Cloud Solutions & Migration</h5>
+                        <p>Scalable cloud services for seamless business operations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="about-card">
+                        <h5><i class="bi bi-graph-up-arrow"></i> Data Analytics & AI Solutions</h5>
+                        <p>Data-driven insights to help you make smarter decisions.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-  <!-- Services Section -->
-<section id="services" class="py-5" style="background-color: var(--secondary-color);">
-    <div class="container text-light">
-        <h2 class="section-heading text-center">Our Services</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="about-card">
-                    <h5><i class="bi bi-code-slash"></i> Custom Software Development</h5>
-                    <p>Tailored software solutions to meet your business needs.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="about-card">
-                    <h5><i class="bi bi-cloud-upload"></i> Cloud Solutions & Migration</h5>
-                    <p>Scalable cloud services for seamless business operations.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="about-card">
-                    <h5><i class="bi bi-graph-up-arrow"></i> Data Analytics & AI Solutions</h5>
-                    <p>Data-driven insights to help you make smarter decisions.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
     <!-- Portfolio Section -->
     <section id="portfolio" class="py-5">
         <div class="container">
             <h2 class="text-center">Portfolio & Case Studies</h2>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="placeholder">Image Placeholder</div>
-                            <h5 class="card-title mt-3">Cover Crop Selection Tool</h5>
-                            <p class="card-text">AI-driven tool for smarter agricultural planning.</p>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
@@ -286,66 +337,34 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-<section id="testimonials" class="py-5" style="background-color: var(--primary-color); color: var(--text-color);">
-    <div class="container text-center">
-        <h2 class="section-heading">What Our Clients Say</h2>
-        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <blockquote class="blockquote">
-                        <p>"Syntexa transformed our business with their AI solutions!"</p>
-                        <footer class="blockquote-footer text-light">John Doe, CEO of TechCorp</footer>
-                    </blockquote>
-                </div>
-                <div class="carousel-item">
-                    <blockquote class="blockquote">
-                        <p>"Their professionalism and expertise are unmatched."</p>
-                        <footer class="blockquote-footer text-light">Jane Smith, Founder of AgriGrow</footer>
-                    </blockquote>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
-        </div>
-    </div>
-</section>
-
     <!-- Contact Section -->
     <section id="contact" class="py-5">
         <div class="container">
             <h2 class="text-center">Contact Us</h2>
             <p class="text-center">Have a project in mind? Let’s bring your vision to life.</p>
-            <form>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                    </div>
+            <form action="https://formspree.io/f/mvggypbq" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="mb-3">
                     <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            
         </div>
     </section>
 
-      <!-- Footer -->
+    <!-- Footer -->
     <footer class="py-3">
         <div class="container">
-            <p>&copy; 2024 Syntexa Inc. All Rights Reserved.</p>
+            <p>&copy; 2025 Syntexa Inc. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -365,7 +384,7 @@
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-  // Initialize all tooltips
+         // Initialize all tooltips
     document.addEventListener('DOMContentLoaded', function () {
         const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.forEach(function (tooltipTriggerEl) {
@@ -375,4 +394,3 @@
     </script>
 </body>
 </html>
-
