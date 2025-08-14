@@ -587,11 +587,69 @@
             transition: all 0.3s ease;
         }
 
+        .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            cursor: pointer;
+        }
+
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+
+        .form-status.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+            display: block;
+        }
+
+        .form-status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+            display: block;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .btn-primary:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .form-group textarea {
@@ -920,15 +978,15 @@
                         <span class="stat-label">Flagship Solutions</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">99%</span>
+                        <span class="stat-number">99&#37;</span>
                         <span class="stat-label">System Uptime</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">100%</span>
+                        <span class="stat-number">100&#37;</span>
                         <span class="stat-label">Client Satisfaction</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">24/7</span>
+                        <span class="stat-number">24&#47;7</span>
                         <span class="stat-label">Technical Support</span>
                     </div>
                 </div>
@@ -945,13 +1003,13 @@
             </div>
             <div class="contact-content">
                 <div class="contact-form fade-in">
-                    <form>
+                    <form id="contactForm" action="https://formspree.io/f/xdkogykv" method="POST">
                         <div class="form-group">
-                            <label for="name">Your Name</label>
+                            <label for="name">Your Name *</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address</label>
+                            <label for="email">Email Address *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
@@ -959,10 +1017,67 @@
                             <input type="text" id="company" name="company">
                         </div>
                         <div class="form-group">
-                            <label for="message">Project Details</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your project requirements..." required></textarea>
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service...</option>
+                                <option value="ISO Standards Management">ISO Standards Management</option>
+                                <option value="Document Management & E-Signature">Document Management & E-Signature</option>
+                                <option value="Custom Software Development">Custom Software Development</option>
+                                <option value="Cloud Solutions">Cloud Solutions</option>
+                                <option value="Process Automation">Process Automation</option>
+                                <option value="Application Support">Application Support & Maintenance</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Project Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range...</option>
+                                <option value="Under $5,000">Under $5,000</option>
+                                <option value="$5,000 - $15,000">$5,000 - $15,000</option>
+                                <option value="$15,000 - $50,000">$15,000 - $50,000</option>
+                                <option value="$50,000+">$50,000+</option>
+                                <option value="Discuss">Prefer to discuss</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">Expected Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select timeline...</option>
+                                <option value="ASAP">ASAP (Rush project)</option>
+                                <option value="1-3 months">1-3 months</option>
+                                <option value="3-6 months">3-6 months</option>
+                                <option value="6+ months">6+ months</option>
+                                <option value="Flexible">Flexible</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+                            <textarea id="message" name="message" placeholder="Please describe your project requirements, goals, and any specific features you need..." required rows="5"></textarea>
+                        </div>
+                        
+                        <!-- Formspree honeypot field for spam protection -->
+                        <input type="text" name="_gotcha" style="display:none !important">
+                        
+                        <!-- Custom subject line for emails -->
+                        <input type="hidden" name="_subject" value="New Project Inquiry from Syntexa Inc Website">
+                        
+                        <!-- Thank you page redirect (optional) -->
+                        <input type="hidden" name="_next" value="https://syntexainc.com/thank-you">
+                        
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">
+                                <div class="loading-spinner"></div>
+                                Sending...
+                            </span>
+                        </button>
+                        
+                        <div id="form-status" class="form-status"></div>
                     </form>
                 </div>
                 <div class="contact-info fade-in">
@@ -1030,9 +1145,9 @@
                 </div>
                 <p>Innovative IT Solutions for Your Business Success</p>
                 <div class="social-links">
-                    <a href="#" title="LinkedIn">💼</a>
-                    <a href="#" title="Twitter">🐦</a>
-                    <a href="#" title="GitHub">💻</a>
+                    <!-- <a href="#" title="LinkedIn">💼</a> -->
+                    <!-- <a href="#" title="Twitter">🐦</a> -->
+                    <!-- <a href="#" title="GitHub">💻</a> -->
                     <a href="#" title="Email">📧</a>
                 </div>
             </div>
@@ -1083,11 +1198,75 @@
             }
         });
 
-        // Form submission (you can integrate with your backend)
-        document.querySelector('form').addEventListener('submit', function(e) {
+        // Enhanced form submission with Formspree
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            const formStatus = document.getElementById('form-status');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline-flex';
+            formStatus.style.display = 'none';
+            formStatus.className = 'form-status';
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success
+                    formStatus.className = 'form-status success';
+                    formStatus.innerHTML = `
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <span style="font-size: 1.2em;">✅</span>
+                            <div>
+                                <div style="font-weight: bold; margin-bottom: 5px;">Message Sent Successfully!</div>
+                                <div style="font-size: 0.9em; opacity: 0.8;">Thank you for your interest. We'll get back to you within 24 hours.</div>
+                            </div>
+                        </div>
+                    `;
+                    form.reset();
+                    
+                    // Track successful submission (you can add Google Analytics here)
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'form_submit', {
+                            'event_category': 'Contact',
+                            'event_label': 'Project Inquiry'
+                        });
+                    }
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Error
+                formStatus.className = 'form-status error';
+                formStatus.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <span style="font-size: 1.2em;">❌</span>
+                        <div>
+                            <div style="font-weight: bold; margin-bottom: 5px;">Oops! Something went wrong.</div>
+                            <div style="font-size: 0.9em; opacity: 0.8;">Please try again or email us directly at contact@syntexainc.com</div>
+                        </div>
+                    </div>
+                `;
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+            }
         });
 
         // Add click effects to buttons
