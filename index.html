@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syntexa Inc - Innovative IT Solutions</title>
-
+    
     <!-- Favicon - Browser Tab Icon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -984,7 +984,7 @@
                 </div>
                 <div class="stats fade-in">
                     <div class="stat-item">
-                        <span class="stat-number">2</span>
+                        <span class="stat-number" data-target="2">0</span>
                         <span class="stat-label">Flagship Solutions</span>
                     </div>
                     <div class="stat-item">
@@ -1031,43 +1031,8 @@
                             <input type="tel" id="phone" name="phone">
                         </div>
                         <div class="form-group">
-                            <label for="service">Service Interested In</label>
-                            <select id="service" name="service">
-                                <option value="">Select a service...</option>
-                                <option value="ISO Standards Management">ISO Standards Management</option>
-                                <option value="Document Management & E-Signature">Document Management & E-Signature</option>
-                                <option value="Custom Software Development">Custom Software Development</option>
-                                <option value="Cloud Solutions">Cloud Solutions</option>
-                                <option value="Process Automation">Process Automation</option>
-                                <option value="Application Support">Application Support & Maintenance</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="budget">Project Budget Range</label>
-                            <select id="budget" name="budget">
-                                <option value="">Select budget range...</option>
-                                <option value="Under $5,000">Under $5,000</option>
-                                <option value="$5,000 - $15,000">$5,000 - $15,000</option>
-                                <option value="$15,000 - $50,000">$15,000 - $50,000</option>
-                                <option value="$50,000+">$50,000+</option>
-                                <option value="Discuss">Prefer to discuss</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="timeline">Expected Timeline</label>
-                            <select id="timeline" name="timeline">
-                                <option value="">Select timeline...</option>
-                                <option value="ASAP">ASAP (Rush project)</option>
-                                <option value="1-3 months">1-3 months</option>
-                                <option value="3-6 months">3-6 months</option>
-                                <option value="6+ months">6+ months</option>
-                                <option value="Flexible">Flexible</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Project Details *</label>
-                            <textarea id="message" name="message" placeholder="Please describe your project requirements, goals, and any specific features you need..." required rows="5"></textarea>
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Please tell us about your project, requirements, or how we can help you..." required rows="6"></textarea>
                         </div>
                         
                         <!-- Formspree honeypot field for spam protection -->
@@ -1096,7 +1061,7 @@
                         <div class="contact-icon">📧</div>
                         <div>
                             <strong>Email</strong><br>
-                            contact@syntexainc.com
+                            <a href="mailto:contact@syntexainc.com?subject=Project Inquiry from Website&body=Hello Syntexa Team,%0D%0A%0D%0AI am interested in discussing a project with you.%0D%0A%0D%0APlease contact me at your earliest convenience.%0D%0A%0D%0AThank you!" style="color: #667eea; text-decoration: none;">contact@syntexainc.com</a>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1158,9 +1123,7 @@
                     <!-- <a href="#" title="LinkedIn">💼</a> -->
                     <!-- <a href="#" title="Twitter">🐦</a> -->
                     <!-- <a href="#" title="GitHub">💻</a> -->
-                    <!-- <a href="#" title="Email">📧</a> -->
                     <a href="mailto:contact@syntexainc.com?subject=Hello from Website Visitor&body=Hello Syntexa Team,%0D%0A%0D%0AI found your website and would like to get in touch.%0D%0A%0D%0APlease contact me at your earliest convenience.%0D%0A%0D%0AThank you!" title="Send us an email">📧</a>
-
                 </div>
             </div>
             <p>&copy; 2025 Syntexa Inc. All rights reserved.</p>
@@ -1294,19 +1257,21 @@
             });
         });
 
-        // Counter animation for stats
+        // Fixed counter animation for stats with proper suffix handling
         function animateCounter(el) {
-            const target = parseInt(el.textContent.replace(/\D/g, ''));
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
             let count = 0;
-            const increment = target / 100;
+            const increment = target / 50; // Slower animation
+            
             const timer = setInterval(() => {
                 count += increment;
                 if (count >= target) {
                     count = target;
                     clearInterval(timer);
                 }
-                el.textContent = Math.floor(count) + (el.textContent.includes('+') ? '+' : '');
-            }, 20);
+                el.textContent = Math.floor(count) + suffix;
+            }, 40);
         }
 
         // Trigger counter animation when stats section is visible
