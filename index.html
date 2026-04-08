@@ -11,6 +11,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cloudflare.com">
     
     <!-- Alternative: Inline SVG favicon (if you don't have separate favicon files) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><defs><linearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23667eea'/><stop offset='50%25' style='stop-color:%23764ba2'/><stop offset='100%25' style='stop-color:%23667eea'/></linearGradient></defs><polygon fill='url(%23grad)' points='25,5 40,15 40,35 25,45 10,35 10,15'/><polygon fill='rgba(255,255,255,0.1)' stroke='rgba(255,255,255,0.3)' stroke-width='0.3' points='25,10 35,17 35,33 25,40 15,33 15,17'/><text fill='white' font-family='Arial Black' font-size='14' font-weight='900' text-anchor='middle' x='25' y='30'>S</text></svg>">
@@ -32,6 +33,16 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* This forces the link to be white regardless of visited status */
+        .social-links a, 
+        .social-links a:visited {
+            color: white !important;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            color: #d1d5db !important; /* light gray on hover */
         }
 
         /* Navigation */
@@ -954,7 +965,8 @@
                 <div class="project-card fade-in">
                     <div class="project-header">
                         <div class="project-icon">📄</div>
-                        <span class="project-status status-development">In Development</span>
+                            <span class="project-status">Live Demo</span>
+                        <!-- <span class="project-status status-development">In Development</span> -->
                     </div>
                     <h3>Document Management & E-Signature Platform</h3>
                     <p>An advanced document management system with digital signing capabilities, customizable headers/footers, and role-based access control. Perfect for organizations needing secure document workflows.</p>
@@ -964,8 +976,11 @@
                         <span class="feature-tag">Document Templates</span>
                     </div>
                     <div class="project-actions">
-                        <a href="#contact" class="btn btn-primary">Get Updates</a>
-                        <a href="#contact" class="btn btn-secondary">Early Access</a>
+                        <!-- <a href="#contact" class="btn btn-primary">Get Updates</a>
+                        <a href="#contact" class="btn btn-secondary">Early Access</a> -->
+                        <a href="https://dochive.syntvera.com/login" target="_blank" class="btn btn-primary">View Demo</a>
+                        <a href="#contact" class="btn btn-secondary">Learn More</a>
+
                     </div>
                 </div>
             </div>
@@ -1120,13 +1135,27 @@
                 </div>
                 <p>Innovative IT Solutions for Your Business Success</p>
                 <div class="social-links">
-                    <!-- <a href="#" title="LinkedIn">💼</a> -->
+                    <a href="https://www.linkedin.com/company/syntexainc/" target="_blank" title="LinkedIn">
+                        <img src="static/images/linkedin-icon.png" alt="LinkedIn" width="30"> 
+                    </a>
                     <!-- <a href="#" title="Twitter">🐦</a> -->
                     <!-- <a href="#" title="GitHub">💻</a> -->
-                    <a href="mailto:contact@syntexainc.com?subject=Hello from Website Visitor&body=Hello Syntexa Team,%0D%0A%0D%0AI found your website and would like to get in touch.%0D%0A%0D%0APlease contact me at your earliest convenience.%0D%0A%0D%0AThank you!" title="Send us an email">📧</a>
+                    <a href="mailto:contact@syntexainc.com?subject=Hello from Website Visitor&body=Hello Syntexa Team,%0D%0A%0D%0AI found your website and would like to get in touch.%0D%0A%0D%0APlease contact me at your earliest convenience.%0D%0A%0D%0AThank you!" title="Send us an email">
+                        <img src="static/images/email-icon.png" alt="Email" width="30">                  
+                    </a>
                 </div>
             </div>
-            <p>&copy; 2025 Syntexa Inc. All rights reserved.</p>
+            <div class="flex space-x-6">
+                        <a href="static/documents/Privacy_policy_rev01.pdf"
+                           target="_blank"
+                           class="text-sm text-white hover:text-gray-300"
+                           >Privacy Policy</a>
+                        <!-- <a href="static/documents/TermsCondition_Rev01.pdf"
+                           target="_blank"
+                           class="text-sm text-white hover:text-gray-300">Terms & Conditions</a>
+                        <a href="#" >Cookie Policy</a> -->
+            </div>
+            <p>&copy; 2026 Syntexa Inc. All rights reserved.</p>
         </div>
     </footer>
 
